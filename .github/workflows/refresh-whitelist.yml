@@ -1,0 +1,50 @@
+name: refresh-whitelist
+
+on:
+  schedule:
+    - cron: "0 6 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install deps
+        run: pip install -r requirements.txt
+      - name: Build whitelist
+        run: python scripts/build.py --out whitelist.txt
+      - name: Detect diff
+        id: compare
+        run: |
+          if git diff --quiet whitelist.txt; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+      - name: Open PR on change
+        if: steps.compare.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          BRANCH="refresh-whitelist-$(date -u +%Y-%m-%d)"
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git checkout -b "$BRANCH"
+          git add whitelist.txt
+          git commit -m "chore: refresh whitelist ($(date -u +%Y-%m-%d))"
+          git push -u origin "$BRANCH"
+          gh pr create \
+            --title "chore: refresh whitelist ($(date -u +%Y-%m-%d))" \
+            --body "Automated whitelist refresh. Diff vs. main:
+          \`\`\`diff
+          $(git diff origin/main -- whitelist.txt | head -200)
+          \`\`\`" \
+            --base main
