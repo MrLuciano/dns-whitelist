@@ -8,11 +8,12 @@
 
 ## Verified facts
 
-- **Remote:** `git@github.com:MrLuciano/dns-whitelist.git`
+- **Remote:** `https://github.com/MrLuciano/dns-whitelist.git` (HTTPS — see
+  *Working in this repo* below for why)
 - **Default branch:** `main`
 - **Owner:** `MrLuciano`
-- **Working tree:** empty (only `.git/`). GitHub reports the remote is empty too.
-- **No commits yet.**
+- **First commit:** `AGENTS.md` only (initial stub; no code yet).
+- **GitHub repo:** `isEmpty=false`, `defaultBranchRef.name=main` after init.
 
 ## Assumed intent (flag for the user; revise when code lands)
 
@@ -49,7 +50,10 @@ toolchain is chosen; leave them as TODOs in the meantime.
 
 - Prefer `git status` before and after edits; the working copy has nothing to
   anchor expectations.
-- Use `ssh` (not `https`) when interacting with the remote — only the SSH URL
-  is configured in `.git/config`.
-- SSH key-based auth to GitHub must be set up; `gh`/`git fetch` will fail
-  with `Host key verification failed` until then.
+- HTTPS is the configured remote and `gh auth git-credential` is the
+  credential helper for `https://github.com`, so `git push`/`fetch` "just
+  works" as long as `gh auth status` shows an active login.
+- SSH (`git@github.com:…`) is not currently configured (no keys in
+  `~/.ssh/`). If you switch the remote URL back to SSH, set up
+  `ssh-agent` + an added key first, or `git push` will fail with
+  `Permission denied (publickey)`.
