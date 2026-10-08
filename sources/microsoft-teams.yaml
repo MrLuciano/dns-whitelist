@@ -1,0 +1,8 @@
+service: Microsoft Teams
+source_url: https://learn.microsoft.com/en-us/microsoft-365/enterprise/urls-and-ip-address-ranges
+fetch:
+  type: json_endpoint
+  url: https://endpoints.office.com/endpoints/worldwide
+  domain_keys: [urls]
+  filter: serviceArea=Skype
+output_section: Microsoft Teams
