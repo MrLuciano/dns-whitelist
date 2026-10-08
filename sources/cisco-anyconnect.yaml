@@ -1,0 +1,40 @@
+service: Cisco AnyConnect / Secure Client
+source_url: https://www.cisco.com/c/en/us/td/docs/security/vpn_client/anyconnect/Cisco-Secure-Client-5/admin/guide/b-cisco-secure-client-admin-guide-5-1/umbrella-roaming.html
+fetch:
+  type: static_list
+  fetch: false
+  urls:
+    # Universal support domains (always required)
+    - connecttest.cisco.io
+    - www.msftconnecttest.com
+    - mus.cisco.com
+    # Umbrella Roaming Security / SWG module
+    - disthost.umbrella.com
+    - disthost.opendns.com
+    - api.opendns.com
+    - sync.hydra.opendns.com
+    - updates.umbrella.com
+    - updates.opendns.com
+    # Cert revocation
+    - ocsp.digicert.com
+    - crl3.digicert.com
+    - crl4.digicert.com
+    # Umbrella broad
+    - "*.umbrella.com"
+    - "*.opendns.com"
+    # Cisco Secure Access / SSE (cloud)
+    - "*.sse.cisco.com"
+    - "*.vpn.sse.cisco.com"
+    - "*.fg.id.sse.cisco.com"
+    - ztna.sse.cisco.com
+    - enroll.ztna.sse.cisco.com
+    - acme.sse.cisco.com
+    - zpc.sse.cisco.com
+    # SAML IdP bypasses
+    - "*.okta.com"
+    - "*.oktacdn.com"
+    - "*.pingidentity.com"
+    - secure.aadcdn.microsoftonline-p.com
+    - ocsp.int-x3.letsencrypt.org
+    - isrg.trustid.ocsp.identrust.com
+output_section: Cisco AnyConnect
