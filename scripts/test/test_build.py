@@ -1,5 +1,6 @@
-import yaml
 from pathlib import Path
+
+import yaml
 
 from scripts.build import build_whitelist
 
@@ -53,6 +54,5 @@ class TestBuildWhitelist:
         ).read_text()
 
         # Build against the sources dir.
-        import sys
         out = build_whitelist(sources_dir=sources_dir)
         assert out == golden
