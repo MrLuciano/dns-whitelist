@@ -13,8 +13,13 @@ https://raw.githubusercontent.com/MrLuciano/dns-whitelist/main/whitelist.txt
 
 ## What it does
 
-- Fetches the **Microsoft 365 endpoints catalog** weekly (and on manual
-  trigger) and pulls the domains Teams and Microsoft Authenticator need.
+- **Fetches live vendor catalogs** (Microsoft 365 endpoints) weekly and
+  on manual trigger; pulls the domains Teams and Microsoft Authenticator
+  need.
+- **Loads hand-curated YAML lists** (Google Authenticator, NetIQ, Cisco
+  AnyConnect, Palo Alto GlobalProtect) — for services that don't publish
+  a machine-readable allowlist. See `sources/*.yaml` for the curated FQDN
+  sets and the upstream docs they reference.
 - Validates each candidate with strict RFC-1035-ish syntax rules.
 - Drops unresolvable domains (they can't be in any blocklist collision
   if they don't exist, so they don't belong in a *targeted* allowlist).
@@ -23,11 +28,18 @@ https://raw.githubusercontent.com/MrLuciano/dns-whitelist/main/whitelist.txt
 
 Currently covered:
 
-- **Microsoft Teams** (`serviceArea=Skype` in the Microsoft 365 catalog)
-- **Microsoft Authenticator** (`serviceArea=Common` in the Microsoft 365 catalog)
-
-Phase 2 will add Google Authenticator, NetIQ, Cisco AnyConnect, and
-Palo Alto GlobalProtect as additive YAML-only changes.
+- **Microsoft Teams** — `serviceArea=Skype` in the Microsoft 365 catalog
+- **Microsoft Authenticator** — `serviceArea=Common` in the Microsoft 365 catalog
+- **Google Authenticator** — offline-first app; only the cloud-sync path
+  needs network. Hand-curated.
+- **NetIQ** (Access Manager + Identity Manager) — only the optional
+  update/registration/catalog endpoints are vendor-owned. Hand-curated.
+- **Cisco AnyConnect / Secure Client** — universal support domains
+  plus Umbrella and Secure Access cloud endpoints. Hand-curated.
+- **Palo Alto GlobalProtect** — only the customer's own portal FQDN is
+  always required; we ship the optional Prisma Access / CIE / SLS cloud
+  endpoints. Hand-curated. **Add your portal FQDN to the local AdGuard
+  config; it can't be enumerated.**
 
 ## Maintainers — local update
 
@@ -45,8 +57,14 @@ edit the source YAML or extend the parser.
 
 1. Drop a YAML in `sources/<service>.yaml` (see `sources/microsoft-teams.yaml`
    for the schema).
-2. If your source isn't JSON, add a parser under `scripts/lib/parsers/`
-   (mirror `parsers/json_endpoint.py`) and reference it via `fetch.type`.
+2. Pick a parser:
+   - **Machine-readable catalog** (e.g. JSON): use `json_endpoint` (or add
+     a new parser under `scripts/lib/parsers/`, mirroring
+     `parsers/json_endpoint.py`) and reference it via `fetch.type`.
+   - **Hand-curated list** (no upstream catalog): use `static_list` with
+     `fetch: false` and a `urls:` block. See `sources/netiq.yaml` for
+     the schema. **Add a comment per entry citing the source URL** so
+     the list stays auditable.
 3. Run `python scripts/build.py --out whitelist.txt` and review the diff.
 
 ## Tests
@@ -86,5 +104,9 @@ whitelist.txt             # GENERATED. Do not edit.
   don't resolve via public DNS, so they're dropped by the build. They're
   probably served by a wildcard CNAME that 1.1.1.1 / 8.8.8.8 can't see.
   Targeted-scope philosophy: if we can't see it, we can't add it.
+- **Deployment-specific FQDNs are not included.** The customer's own
+  VPN/portal headend (e.g. `vpn.example.com`, GlobalProtect portal) is
+  always required but cannot be enumerated by a generic allowlist. Add
+  those entries to your local AdGuard config.
 - The build is gated on `pip install` succeeding. On Debian hosts, system
   Python is PEP 668-locked — use a venv (`python3 -m venv .venv && .venv/bin/pip install -r requirements.txt`).

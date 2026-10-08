@@ -3,6 +3,72 @@
 # Last refreshed: 2026-10-08 (UTC)
 # See README.md for usage.
 
+# === Cisco AnyConnect ===
+# Source: https://www.cisco.com/c/en/us/td/docs/security/vpn_client/anyconnect/Cisco-Secure-Client-5/admin/guide/b-cisco-secure-client-admin-guide-5-1/umbrella-roaming.html
+@@||api.opendns.com^
+
+@@||connecttest.cisco.io^
+
+@@||crl3.digicert.com^
+
+@@||crl4.digicert.com^
+
+@@||disthost.opendns.com^
+
+@@||disthost.umbrella.com^
+
+@@||enroll.ztna.sse.cisco.com^
+
+@@||fg.id.sse.cisco.com^
+
+@@||mus.cisco.com^
+
+@@||ocsp.digicert.com^
+
+@@||okta.com^
+
+@@||opendns.com^
+
+@@||pingidentity.com^
+
+@@||secure.aadcdn.microsoftonline-p.com^
+
+@@||sse.cisco.com^
+
+@@||sync.hydra.opendns.com^
+
+@@||umbrella.com^
+
+@@||updates.opendns.com^
+
+@@||www.msftconnecttest.com^
+
+
+# === Google Authenticator ===
+# Source: https://support.google.com/accounts/answer/1066447
+@@||accounts.google.com^
+
+@@||android.clients.google.com^
+
+@@||clients2.google.com^
+
+@@||clients3.google.com^
+
+@@||clients4.google.com^
+
+@@||clients5.google.com^
+
+@@||clients6.google.com^
+
+@@||googleapis.com^
+
+@@||gstatic.com^
+
+@@||passbox-pa.googleapis.com^
+
+@@||www.google.com^
+
+
 # === Microsoft Authenticator ===
 # Source: https://learn.microsoft.com/en-us/microsoft-365/enterprise/urls-and-ip-address-ranges
 @@||account.activedirectory.windowsazure.com^
@@ -263,4 +329,46 @@
 @@||teams.cloud.microsoft^
 
 @@||teams.microsoft.com^
+
+
+# === NetIQ ===
+# Source: https://www.microfocus.com/documentation/access-manager/5.1/install_upgrade/b651hwh.html
+@@||catalog.netiq.com^
+
+@@||download.novell.com^
+
+@@||nu.novell.com^
+
+@@||regserv.novell.com^
+
+@@||secure-www.novell.com^
+
+@@||www.novell.com^
+
+
+# === Palo Alto GlobalProtect ===
+# Source: https://docs.paloaltonetworks.com/globalprotect
+@@||api.paloaltonetworks.com^
+
+@@||br-prd1.us.cdl.paloaltonetworks.com^
+
+@@||certificate.paloaltonetworks.com^
+
+@@||cloud-auth-service.us.apps.paloaltonetworks.com^
+
+@@||cloud-auth.us.apps.paloaltonetworks.com^
+
+@@||cortex-prd1.us.cdl.paloaltonetworks.com^
+
+@@||crl.paloaltonetworks.com^
+
+@@||ocsp.paloaltonetworks.com^
+
+@@||paloaltonetworks.com^
+
+@@||pcl-prd1.us.cdl.paloaltonetworks.com^
+
+@@||storage.googleapis.com^
+
+@@||www.msftconnecttest.com^
 

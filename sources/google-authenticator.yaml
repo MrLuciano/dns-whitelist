@@ -1,0 +1,24 @@
+service: Google Authenticator
+source_url: https://support.google.com/accounts/answer/1066447
+fetch:
+  type: static_list
+  fetch: false
+  urls:
+    # Sign-in for cloud sync
+    - accounts.google.com
+    # gRPC backend for the cloud-sync feature
+    - passbox-pa.googleapis.com
+    # Token-exchange endpoint used during the sync auth handshake
+    - android.clients.google.com
+    # Generic Google auth + time sync (captive portal detection)
+    - www.google.com
+    # Backend services incl. time sync (tlsdate)
+    - clients2.google.com
+    - clients3.google.com
+    - clients4.google.com
+    - clients5.google.com
+    - clients6.google.com
+    # Wildcards for the Google API + static-content CDNs
+    - "*.googleapis.com"
+    - "*.gstatic.com"
+output_section: Google Authenticator

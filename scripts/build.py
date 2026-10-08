@@ -65,9 +65,14 @@ def _load_sources(sources_dir: Path) -> list[dict]:
 def _gather_section(cfg: dict, cache_dir: Path | None) -> list[str]:
     parser_name = cfg["fetch"]["type"]
     parser = _import_parser(parser_name)
-    url = cfg["fetch"]["url"]
-    payload = fetch_mod.fetch_url(url, cache_dir=cache_dir)
-    candidates = parser.parse(payload, cfg["fetch"])
+    if cfg["fetch"].get("fetch", True):
+        url = cfg["fetch"]["url"]
+        payload = fetch_mod.fetch_url(url, cache_dir=cache_dir)
+        candidates = parser.parse(payload, cfg["fetch"])
+    else:
+        # Hand-curated source (e.g. static_list parser): the FQDNs are
+        # in the YAML config itself, no upstream fetch.
+        candidates = parser.parse(None, cfg["fetch"])
 
     valid: list[str] = []
     for cand in candidates:
