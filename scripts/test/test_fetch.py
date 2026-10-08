@@ -1,6 +1,6 @@
 import pytest
 
-from scripts.lib.fetch import fetch_url, FetchError
+from scripts.lib.fetch import FetchError, fetch_url
 
 
 class TestFetchUrl:
