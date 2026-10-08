@@ -1,0 +1,17 @@
+service: NetIQ (Access Manager + Identity Manager)
+source_url: https://www.microfocus.com/documentation/access-manager/5.1/install_upgrade/b651hwh.html
+fetch:
+  type: static_list
+  fetch: false
+  urls:
+    # Online Update / Upgrade Assistant
+    - nu.novell.com
+    - secure-www.novell.com
+    # Appliance registration / mirror credentials
+    - regserv.novell.com
+    # Application Connector Catalog
+    - catalog.netiq.com
+    # iManager plug-in descriptor
+    - www.novell.com
+    - download.novell.com
+output_section: NetIQ
