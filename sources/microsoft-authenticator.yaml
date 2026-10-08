@@ -2,7 +2,7 @@ service: Microsoft Authenticator
 source_url: https://learn.microsoft.com/en-us/microsoft-365/enterprise/urls-and-ip-address-ranges
 fetch:
   type: json_endpoint
-  url: https://endpoints.office.com/endpoints/worldwide
+  url: https://endpoints.office.com/endpoints/worldwide?ClientRequestId=c286f1ab-b0ae-40d1-80be-d119d88bfa9f
   domain_keys: [urls]
   filter: serviceArea=Common
 output_section: Microsoft Authenticator

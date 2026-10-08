@@ -18,19 +18,24 @@ output_section, entries within each section sorted alphabetically.
 
 from __future__ import annotations
 
-import argparse
-import datetime
+# When run as `python scripts/build.py`, sys.path[0] is the scripts/
+# directory — which makes `scripts` itself not importable. Add the repo
+# root (parent of scripts/) so absolute imports like
+# `from scripts.lib.fetch import ...` resolve. Must come BEFORE the
+# `from scripts...` imports below.
 import sys
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+
+import argparse
+import datetime
 
 import yaml
 
 from scripts.lib import fetch as fetch_mod
 from scripts.lib import resolve as resolve_mod
 from scripts.lib.lint import ValidationError, validate_domain
-
-PARSERS_DIR = Path(__file__).parent / "lib" / "parsers"
-sys.path.insert(0, str(PARSERS_DIR.parent.parent))
 
 
 def _import_parser(name: str):
