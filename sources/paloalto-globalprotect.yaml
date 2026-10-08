@@ -1,0 +1,31 @@
+service: Palo Alto GlobalProtect
+source_url: https://docs.paloaltonetworks.com/globalprotect
+fetch:
+  type: static_list
+  fetch: false
+  urls:
+    # Prisma Access / GlobalProtect cloud (optional cloud features)
+    - "*.gpcloudservice.com"
+    - "*.gw.gpcloudservice.com"
+    - "*.prismaaccess.com"
+    - "*.acs.prismaaccess.com"
+    - "*.proxy.prismaaccess.com"
+    - "*.rbi.io"
+    # PAN cloud telemetry / cert / OCSP
+    - "*.paloaltonetworks.com"
+    - api.paloaltonetworks.com
+    - certificate.paloaltonetworks.com
+    - ocsp.paloaltonetworks.com
+    - crl.paloaltonetworks.com
+    # Cloud Identity Engine (region: us)
+    - cloud-auth.us.apps.paloaltonetworks.com
+    - cloud-auth-service.us.apps.paloaltonetworks.com
+    # Strata Logging Service (telemetry; region: us)
+    - pcl-prd1.us.cdl.paloaltonetworks.com
+    - cortex-prd1.us.cdl.paloaltonetworks.com
+    - br-prd1.us.cdl.paloaltonetworks.com
+    # GlobalProtect client-side telemetry upload
+    - storage.googleapis.com
+    # Captive portal probe examples (admin-configurable; provided as a default)
+    - www.msftconnecttest.com
+output_section: Palo Alto GlobalProtect
