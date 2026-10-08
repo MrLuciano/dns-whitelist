@@ -66,7 +66,10 @@ def _gather_section(cfg: dict, cache_dir: Path | None) -> list[str]:
 
     valid: list[str] = []
     for cand in candidates:
-        cand = cand.strip().lower().lstrip(".")
+        # Normalize: strip whitespace, lowercase, strip leading '*.' and '.'
+        # so wildcards like '*.example.com' become 'example.com' (which the
+        # AdGuard `||` prefix already covers as a subdomain rule).
+        cand = cand.strip().lower().lstrip("*.")
         try:
             validate_domain(cand)
         except ValidationError as e:
