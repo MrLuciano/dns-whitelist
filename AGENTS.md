@@ -1,9 +1,10 @@
 # AGENTS.md — dns-whitelist
 
-> **Status: Phase 1 complete.** Framework + Microsoft Teams + Microsoft
-> Authenticator are live. The remaining 4 services (NetIQ, Cisco AnyConnect,
-> Palo Alto GlobalProtect, Google Authenticator) ship as additive changes
-> in Phase 2 — one YAML per service, optionally one parser, one PR.
+> **Status: All 6 services live.** Framework + Microsoft Teams + Microsoft
+> Authenticator (Phase 1, fetched from the Microsoft 365 catalog) and
+> Google Authenticator + NetIQ + Cisco AnyConnect + Palo Alto GlobalProtect
+> (Phase 2, hand-curated via `static_list` parser — no upstream catalog).
+> 26/26 tests pass; ruff clean.
 
 ## Verified facts
 
