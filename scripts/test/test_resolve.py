@@ -1,6 +1,6 @@
 import pytest
 
-from scripts.lib.resolve import resolve_domain, ResolutionError
+from scripts.lib.resolve import ResolutionError, resolve_domain
 
 
 class TestResolveDomain:

@@ -1,6 +1,6 @@
 import pytest
 
-from scripts.lib.lint import validate_domain, ValidationError
+from scripts.lib.lint import ValidationError, validate_domain
 
 
 class TestValidateDomain:
