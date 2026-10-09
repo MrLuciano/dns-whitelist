@@ -1,3 +1,7 @@
+<p>
+  <b>English</b> | <a href="README.pt-BR.md">Português (Brasil)</a> | <a href="README.fr.md">Français</a> | <a href="README.es.md">Español</a>
+</p>
+
 # dns-whitelist
 
 Curated allowlist of DNS names consumed by **AdGuard Home**, kept current
