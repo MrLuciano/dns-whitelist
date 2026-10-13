@@ -27,6 +27,8 @@
 
 @@||okta.com^
 
+@@||oktacdn.com^
+
 @@||opendns.com^
 
 @@||pingidentity.com^
@@ -40,6 +42,8 @@
 @@||umbrella.com^
 
 @@||updates.opendns.com^
+
+@@||vpn.sse.cisco.com^
 
 @@||www.msftconnecttest.com^
 
@@ -71,11 +75,15 @@
 
 # === Microsoft Authenticator ===
 # Source: https://learn.microsoft.com/en-us/microsoft-365/enterprise/urls-and-ip-address-ranges
+@@||aadrm.com^
+
 @@||account.activedirectory.windowsazure.com^
 
 @@||account.live.com^
 
 @@||accounts.accesscontrol.windows.net^
+
+@@||acompli.net^
 
 @@||activation.sls.microsoft.com^
 
@@ -99,9 +107,17 @@
 
 @@||appsforoffice.microsoft.com^
 
+@@||aria.microsoft.com^
+
+@@||assets-yammer.com^
+
 @@||auth.gfx.ms^
 
+@@||auth.microsoft.com^
+
 @@||autologon.microsoftazuread-sso.com^
+
+@@||azure-apim.net^
 
 @@||azurerms.com^
 
@@ -134,6 +150,8 @@
 @@||companymanager.microsoftonline.com^
 
 @@||compliance.microsoft.com^
+
+@@||cortana.ai^
 
 @@||crl.globalsign.com^
 
@@ -181,6 +199,8 @@
 
 @@||hip.live.com^
 
+@@||informationprotection.azure.com^
+
 @@||informationprotection.hosting.portal.azure.net^
 
 @@||login-us.microsoftonline.com^
@@ -205,9 +225,31 @@
 
 @@||microsoft.com^
 
+@@||microsoftonline-p.com^
+
+@@||microsoftonline.com^
+
+@@||microsoftusercontent.com^
+
+@@||msauth.net^
+
+@@||msauthimages.net^
+
 @@||mscrl.microsoft.com^
 
 @@||msdn.microsoft.com^
+
+@@||msecnd.net^
+
+@@||msftauth.net^
+
+@@||msftauthimages.net^
+
+@@||msftidentity.com^
+
+@@||msidentity.com^
+
+@@||msocdn.com^
 
 @@||nexus.microsoftonline-p.com^
 
@@ -229,6 +271,8 @@
 
 @@||office.live.com^
 
+@@||office.net^
+
 @@||office15client.microsoft.com^
 
 @@||office365.com^
@@ -245,11 +289,19 @@
 
 @@||officespeech.platform.bing.com^
 
+@@||omniroot.com^
+
 @@||onenote.com^
 
 @@||oneocsp.microsoft.com^
 
+@@||online.office.com^
+
+@@||onmicrosoft.com^
+
 @@||otelrules.azureedge.net^
+
+@@||outlookmobile.com^
 
 @@||partnerservices.getmicrosoftkey.com^
 
@@ -269,6 +321,8 @@
 
 @@||protection.office.com^
 
+@@||public-trust.com^
+
 @@||purview.microsoft.com^
 
 @@||r.office.microsoft.com^
@@ -283,9 +337,15 @@
 
 @@||signup.live.com^
 
+@@||static.microsoft^
+
 @@||support.microsoft.com^
 
 @@||sway.com^
+
+@@||symcb.com^
+
+@@||symcd.com^
 
 @@||t0.tiles.virtualearth.net^
 
@@ -306,6 +366,8 @@
 @@||technet.microsoft.com^
 
 @@||tse1.mm.bing.net^
+
+@@||usercontent.microsoft^
 
 @@||verisign.com^
 
@@ -342,9 +404,13 @@
 
 @@||aka.ms^
 
+@@||keydelivery.mediaservices.windows.net^
+
 @@||lync.com^
 
 @@||skype.com^
+
+@@||streaming.mediaservices.windows.net^
 
 @@||teams.cloud.microsoft^
 
@@ -368,6 +434,8 @@
 
 # === Palo Alto GlobalProtect ===
 # Source: https://docs.paloaltonetworks.com/globalprotect
+@@||acs.prismaaccess.com^
+
 @@||api.paloaltonetworks.com^
 
 @@||br-prd1.us.cdl.paloaltonetworks.com^
@@ -382,11 +450,21 @@
 
 @@||crl.paloaltonetworks.com^
 
+@@||gpcloudservice.com^
+
+@@||gw.gpcloudservice.com^
+
 @@||ocsp.paloaltonetworks.com^
 
 @@||paloaltonetworks.com^
 
 @@||pcl-prd1.us.cdl.paloaltonetworks.com^
+
+@@||prismaaccess.com^
+
+@@||proxy.prismaaccess.com^
+
+@@||rbi.io^
 
 @@||storage.googleapis.com^
 

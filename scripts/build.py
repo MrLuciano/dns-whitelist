@@ -76,6 +76,13 @@ def _gather_section(cfg: dict, cache_dir: Path | None) -> list[str]:
 
     valid: list[str] = []
     for cand in candidates:
+        # Track whether this was a wildcard (had a `*.` prefix) BEFORE
+        # normalization. Wildcards are trusted even when the apex doesn't
+        # resolve via public DNS, because the AdGuard `||apex^` rule
+        # covers all subdomains regardless. Without this trust, e.g.
+        # `*.microsoftonline.com` is dropped (apex doesn't resolve) even
+        # though the rule would cover the subdomains that DO resolve.
+        was_wildcard = cand.startswith("*.")
         # Normalize: strip whitespace, lowercase, strip leading '*.' and '.'
         # so wildcards like '*.example.com' become 'example.com' (which the
         # AdGuard `||` prefix already covers as a subdomain rule).
@@ -84,6 +91,14 @@ def _gather_section(cfg: dict, cache_dir: Path | None) -> list[str]:
             validate_domain(cand)
         except ValidationError as e:
             print(f"  drop (lint): {cand}: {e}", file=sys.stderr)
+            continue
+        if was_wildcard:
+            # Skip the DNS-resolve check for wildcards — see the comment
+            # above for the reasoning. Targets the silent-drop class of
+            # bug where the apex is CNAME-only / not A-record-published
+            # but its subdomains are real services (microsoftonline.com,
+            # virtualearth.net, msftidentity.com, etc.).
+            valid.append(cand)
             continue
         try:
             resolve_mod.resolve_domain(cand)
