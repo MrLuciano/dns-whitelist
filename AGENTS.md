@@ -77,3 +77,6 @@ docs/superpowers/         # design spec + implementation plan
 - **Microsoft 365 catalog API requires `?ClientRequestId=<UUID>`.** Both
   sources YAMLs include a fixed client ID; change it freely, but the
   parameter must be a valid GUID or the response is `400 Bad Request`.
+  
+  ## Cleanup
+  - clean up local temporary changes after pushing to git. 
