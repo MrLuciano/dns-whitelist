@@ -9,6 +9,12 @@ Config schema (a subset of the source YAML):
                               keeps only records whose `key` is one of
                               the comma-separated values. Whitespace
                               around `=` and `,` is ignored.
+    extra_urls: list[str]    hand-curated FQDNs to merge with the catalog
+                              output. Use for third-party services the
+                              catalog doesn't cover (e.g. Bing Maps tile
+                              servers for the Microsoft Authenticator
+                              location/map feature). The build's DNS
+                              resolve filter still applies to these.
 
 Returns a deduplicated list of domain strings sorted in DNS order
 (rightmost label most significant), e.g. `example.com` precedes
@@ -56,4 +62,9 @@ def parse(payload: Any, config: dict) -> list[str]:
 
     keys = config.get("domain_keys") or ["urls"]
     domains = _extract_domains(records, keys)
+
+    # Hand-curated extras (e.g. third-party services the catalog doesn't
+    # cover). Merged with the catalog output; sorted + deduped below.
+    domains.extend(config.get("extra_urls", []))
+
     return sorted(set(domains), key=lambda d: tuple(reversed(d.split("."))))

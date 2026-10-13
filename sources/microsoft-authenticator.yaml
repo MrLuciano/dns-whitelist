@@ -5,4 +5,28 @@ fetch:
   url: https://endpoints.office.com/endpoints/worldwide?ClientRequestId=c286f1ab-b0ae-40d1-80be-d119d88bfa9f
   domain_keys: [urls]
   filter: serviceArea=Common
+  # Hand-curated extras for services the Microsoft 365 endpoints catalog
+  # doesn't cover. The Microsoft Authenticator app needs these for the
+  # "location" map shown during MFA approval, push notifications, etc.
+  extra_urls:
+    # Authenticator push notifications and images
+    - "*.msftauth.net"
+    - "*.msftauthimages.net"
+    # MSAL identity services (used by Authenticator for sign-in)
+    - "*.msftidentity.com"
+    - "*.msidentity.com"
+    # Bing services (the Authenticator "location" feature is rendered
+    # by the Bing Maps Android SDK; without these the map screen hangs)
+    - "*.bing.com"
+    - "platform.bing.com"
+    # Bing Maps tile servers (the apex virtualearth.net doesn't resolve
+    # via public DNS, so we list each t0..t7 sub-server explicitly)
+    - "t0.tiles.virtualearth.net"
+    - "t1.tiles.virtualearth.net"
+    - "t2.tiles.virtualearth.net"
+    - "t3.tiles.virtualearth.net"
+    - "t4.tiles.virtualearth.net"
+    - "t5.tiles.virtualearth.net"
+    - "t6.tiles.virtualearth.net"
+    - "t7.tiles.virtualearth.net"
 output_section: Microsoft Authenticator

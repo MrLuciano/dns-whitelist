@@ -137,6 +137,8 @@
 
 @@||becws.microsoftonline.com^
 
+@@||bing.com^
+
 @@||c.bing.com^
 
 @@||c.bing.net^
@@ -327,6 +329,8 @@
 
 @@||phonefactor.net^
 
+@@||platform.bing.com^
+
 @@||platform.linkedin.com^
 
 @@||portal.cloudappsecurity.com^
@@ -366,6 +370,22 @@
 @@||symcb.com^
 
 @@||symcd.com^
+
+@@||t0.tiles.virtualearth.net^
+
+@@||t1.tiles.virtualearth.net^
+
+@@||t2.tiles.virtualearth.net^
+
+@@||t3.tiles.virtualearth.net^
+
+@@||t4.tiles.virtualearth.net^
+
+@@||t5.tiles.virtualearth.net^
+
+@@||t6.tiles.virtualearth.net^
+
+@@||t7.tiles.virtualearth.net^
 
 @@||technet.microsoft.com^
 

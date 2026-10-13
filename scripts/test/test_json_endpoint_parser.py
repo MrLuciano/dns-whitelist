@@ -39,3 +39,48 @@ class TestParse:
             {"category": "Default", "urls": ["c.example.com"]},
         ]
         assert parse(payload, config) == ["a.example.com", "b.example.com"]
+
+    def test_extra_urls_merged_with_catalog(self):
+        # Hand-curated extras should be merged with the catalog output,
+        # deduped, and sorted in DNS order. Wildcards are PRESERVED at
+        # this layer — build.py strips the `*.` prefix during candidate
+        # normalization (and emits the equivalent AdGuard `@@||apex^`).
+        config = {
+            "domain_keys": ["urls"],
+            "extra_urls": [
+                "t0.tiles.virtualearth.net",
+                "*.bing.com",
+                "platform.bing.com",
+            ],
+        }
+        payload = [
+            {"urls": ["login.microsoftonline.com", "example.com"]},
+        ]
+        result = parse(payload, config)
+        # DNS-order sort: "com" < "com" < "com" < "com" < "net";
+        # within the "com" group, 3-label "bing" < 2-label "example"
+        # (because the tiebreaker at position 1 is 'b' < 'e').
+        assert result == [
+            "*.bing.com",
+            "platform.bing.com",
+            "example.com",
+            "login.microsoftonline.com",
+            "t0.tiles.virtualearth.net",
+        ]
+
+    def test_extra_urls_empty_list(self):
+        config = {"domain_keys": ["urls"], "extra_urls": []}
+        payload = [{"urls": ["example.com"]}]
+        assert parse(payload, config) == ["example.com"]
+
+    def test_extra_urls_without_filter_catalog(self):
+        # Extra URLs work even when no filter is set.
+        config = {
+            "domain_keys": ["urls"],
+            "extra_urls": ["custom.example.com"],
+        }
+        payload = [{"urls": ["catalog.example.com"]}]
+        assert parse(payload, config) == [
+            "catalog.example.com",
+            "custom.example.com",
+        ]
