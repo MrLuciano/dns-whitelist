@@ -133,6 +133,12 @@
 
 @@||azure-apim.net^
 
+@@||azure.com^
+
+@@||azureedge.net^
+
+@@||azurefd.net^
+
 @@||azurerms.com^
 
 @@||becws.microsoftonline.com^
@@ -162,6 +168,8 @@
 @@||clientconfig.microsoftonline-p.net^
 
 @@||cloud.microsoft^
+
+@@||cloudapp.net^
 
 @@||companymanager.microsoftonline.com^
 
@@ -398,6 +406,8 @@
 @@||verisign.net^
 
 @@||virtualearth.net^
+
+@@||windows.net^
 
 @@||wus-www.sway-cdn.com^
 

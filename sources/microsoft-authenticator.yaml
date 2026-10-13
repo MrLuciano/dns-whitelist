@@ -6,8 +6,10 @@ fetch:
   domain_keys: [urls]
   filter: serviceArea=Common
   # Hand-curated extras for services the Microsoft 365 endpoints catalog
-  # doesn't cover. The Microsoft Authenticator app needs these for the
-  # "location" map shown during MFA approval, push notifications, etc.
+  # doesn't cover (or that live in serviceArea=Skype/Exchange, not Common).
+  # The Microsoft Authenticator app needs these for the "location" map
+  # shown during MFA approval, push notifications, the post-approval
+  # auth-response POST, and Microsoft account broker services.
   extra_urls:
     # Authenticator push notifications and images
     - "*.msftauth.net"
@@ -29,4 +31,17 @@ fetch:
     - "t5.tiles.virtualearth.net"
     - "t6.tiles.virtualearth.net"
     - "t7.tiles.virtualearth.net"
+    # Office family — the Authenticator app contacts these during sign-in
+    # context (work/school account broker, token acquisition, etc.). These
+    # live in the catalog's Skype serviceArea, not Common.
+    - "*.office.com"
+    - "*.office.net"
+    - "*.office365.com"
+    # Azure family — Entra ID device registration, app service backends,
+    # and CDN/edge services that the broker or app-update flow may use.
+    - "*.azure.com"
+    - "*.windows.net"
+    - "*.azureedge.net"
+    - "*.azurefd.net"
+    - "*.cloudapp.net"
 output_section: Microsoft Authenticator
