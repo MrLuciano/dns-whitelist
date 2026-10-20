@@ -1,0 +1,20 @@
+service: Avenue Securities
+source_url: https://www.avenue.us/about-us
+fetch:
+  type: static_list
+  fetch: false
+  # Avenue Securities (avenue.us) is a US broker-dealer (FINRA/SIPC) with a
+  # Brazil-regulated affiliate. The mobile app is published under the package
+  # id `us.avenue` with `avenue.us` as the developer/support domain.
+  #
+  # Confirmed host: the client portal lives at a subdomain of avenue.us
+  # (e.g. pit.avenue.us/login). A wildcard on the apex covers the portal
+  # and any other app-facing subdomain without enumerating them.
+  #
+  # CAVEAT: Avenue publishes no official network-requirements / firewall
+  # allowlist page. This entry is derived from the app's published
+  # support domain and observed portal host. If a specific host is found
+  # to be blocked, add it explicitly below.
+  urls:
+    - "*.avenue.us"
+output_section: Avenue Securities

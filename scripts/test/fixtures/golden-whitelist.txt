@@ -3,6 +3,16 @@
 # Last refreshed: 2026-10-08 (UTC)
 # See README.md for usage.
 
+# === Avenue Securities ===
+# Source: https://www.avenue.us/about-us
+@@||avenue.us^
+
+
+# === BeyondTrust Cloud ===
+# Source: https://docs.beyondtrust.com/pra/v24.3/docs/cloud-network
+@@||beyondtrustcloud.com^
+
+
 # === Cisco AnyConnect ===
 # Source: https://www.cisco.com/c/en/us/td/docs/security/vpn_client/anyconnect/Cisco-Secure-Client-5/admin/guide/b-cisco-secure-client-admin-guide-5-1/umbrella-roaming.html
 @@||acme.sse.cisco.com^

@@ -1,0 +1,18 @@
+service: BeyondTrust Cloud
+source_url: https://docs.beyondtrust.com/pra/v24.3/docs/cloud-network
+fetch:
+  type: static_list
+  fetch: false
+  # BeyondTrust Cloud is single-tenant: each customer gets their own
+  # subdomain of the shared cloud DNS suffix (documented as
+  # "yoursite.beyondtrustcloud.com"). A wildcard on the suffix therefore
+  # covers every tenant portal, gateway, and API host for this product
+  # family (PRA, Remote Support, Password Safe, EPM, Entitle).
+  #
+  # Port 443 only (HTTPS enforced) per the Cloud Guide.
+  #
+  # Note: this suffix is tenant-namespaced, so the wildcard resolves the
+  # exact deployment without hardcoding a customer subdomain.
+  urls:
+    - "*.beyondtrustcloud.com"
+output_section: BeyondTrust Cloud
