@@ -1,0 +1,21 @@
+service: Mercado Pago
+source_url: https://www.mercadopago.com.br/
+fetch:
+  type: static_list
+  fetch: false
+  # Mercado Pago — MercadoLibre's payments/financial-services arm.
+  # Shares infrastructure with MercadoLibre/Mercado Livre, so the ML
+  # apexes and the mlstatic asset CDN are required for the app to render.
+  #
+  # api.mercadopago.com is the documented API base (developer portal at
+  # developers.mercadopago.com). http2.mlstatic.com is the asset CDN
+  # referenced in third-party allowlists; mlstatic.com apex does not
+  # resolve on its own, so only the working host is listed.
+  #
+  # NOTE: verified via DNS on 2026-10-22.
+  urls:
+    - "*.mercadopago.com"
+    - "*.mercadolibre.com"
+    - "*.mercadol.com"
+    - "http2.mlstatic.com"
+output_section: Mercado Pago

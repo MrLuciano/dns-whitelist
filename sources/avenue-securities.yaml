@@ -11,6 +11,11 @@ fetch:
   # (e.g. pit.avenue.us/login). A wildcard on the apex covers the portal
   # and any other app-facing subdomain without enumerating them.
   #
+  # Verified via DNS on 2026-10-22: avenue.us resolves (Cloudflare).
+  # There is no separate avenuesecurities.com in service — that name
+  # appears only as a legal entity name on the about-us page, and legal
+  # entity names were deliberately NOT converted into domains.
+  #
   # CAVEAT: Avenue publishes no official network-requirements / firewall
   # allowlist page. This entry is derived from the app's published
   # support domain and observed portal host. If a specific host is found

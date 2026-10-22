@@ -1,0 +1,18 @@
+service: Nubank
+source_url: https://nubank.com.br/
+fetch:
+  type: static_list
+  fetch: false
+  # Nubank (Nu Holdings) — Latin America's largest digital bank.
+  # Operates Brazil, Mexico and Colombia. The Brazilian app resolves under
+  # nubank.com.br (CloudFront-fronted); the other country apexes are
+  # included because the shared app build can route to them.
+  #
+  # NOTE: Nubank publishes no public developer portal or firewall
+  # allowlist. Apexes verified via DNS on 2026-10-22.
+  urls:
+    - "*.nubank.com.br"
+    - "*.nubank.com"
+    - "*.nubank.com.mx"
+    - "*.nubank.com.co"
+output_section: Nubank

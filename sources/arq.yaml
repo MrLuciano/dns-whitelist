@@ -1,0 +1,16 @@
+service: ARQ
+source_url: https://www.arqfinance.com/pt-BR
+fetch:
+  type: static_list
+  fetch: false
+  # ARQ — Brazilian digital account for global finances. Rebranded from
+  # "DolarApp" (same app, same accounts). iOS app id: 1567954123.
+  #
+  # The domain is arqfinance.com (NOT arq.com.br, which is NXDOMAIN and
+  # is not this institution). Legal entities include Atlas Brasil ARQ
+  # Instituicao de Pagamento Ltda. and Oslo Capital DTVM S.A.
+  #
+  # NOTE: verified via DNS on 2026-10-22. No published allowlist.
+  urls:
+    - "*.arqfinance.com"
+output_section: ARQ

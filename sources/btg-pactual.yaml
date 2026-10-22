@@ -1,0 +1,17 @@
+service: BTG Pactual
+source_url: https://www.btgpactual.com/
+fetch:
+  type: static_list
+  fetch: false
+  # BTG Pactual — Brazilian investment bank / wealth manager.
+  # ISPB: BPABBRRJ (Banco BTG Pactual S.A.)
+  #
+  # Two apexes: btgpactual.com.br (Brazilian retail + app) and
+  # btgpactual.com (group / international presence per LinkedIn:
+  # "Para mais informações, acesse www.btgpactual.com").
+  #
+  # NOTE: verified via DNS on 2026-10-22. No official allowlist page.
+  urls:
+    - "*.btgpactual.com.br"
+    - "*.btgpactual.com"
+output_section: BTG Pactual

@@ -1,0 +1,15 @@
+service: Bipa
+source_url: https://bipa.app/
+fetch:
+  type: static_list
+  fetch: false
+  # Bipa — Brazilian digital account focused on Bitcoin (founded 2020).
+  # Android app package: bipa.app.bipa
+  #
+  # Domain is bipa.app (NOT bip.com.br, which does not resolve and is an
+  # unrelated company).
+  #
+  # NOTE: verified via DNS on 2026-10-22. No published allowlist.
+  urls:
+    - "*.bipa.app"
+output_section: Bipa

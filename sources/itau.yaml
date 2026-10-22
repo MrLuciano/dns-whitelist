@@ -1,0 +1,20 @@
+service: Itaú Unibanco
+source_url: https://www.itau.com.br/
+fetch:
+  type: static_list
+  fetch: false
+  # Itaú Unibanco — largest private-sector bank in Brazil.
+  # Android app package: com.itau (Digital Asset Links verified at
+  # well-known.dev/resources/assetlinks/sites/itau.com.br).
+  #
+  # Itaú operates TWO distinct apexes: itau.com.br (the Brazilian retail
+  # banking / app surface) and itau.com (group/corporate + the
+  # hom.cloud.itau.com.br service estate). Both are included because the
+  # app reaches across them depending on feature.
+  #
+  # NOTE: no official "URLs to allow" page is published; these are the
+  # apexes the app is built against.
+  urls:
+    - "*.itau.com.br"
+    - "*.itau.com"
+output_section: Itaú Unibanco

@@ -1,0 +1,19 @@
+service: Rico Investimentos
+source_url: https://www.rico.com.vc/
+fetch:
+  type: static_list
+  fetch: false
+  # Rico — Brazilian retail investment brokerage, now a consumer-facing
+  # brand of XP Investimentos CCTVM S.A. (CNPJ 02.332.886/0016-82).
+  # Android app package: br.com.rico.mobile
+  #
+  # The brand domain is rico.com.vc (NOT ricoinvestimentos.com.br, which
+  # does not resolve). ri.co is also registered and resolves, and is
+  # included as the short-form domain.
+  #
+  # NOTE: verified via DNS on 2026-10-22. Rico publishes no firewall
+  # allowlist page.
+  urls:
+    - "*.rico.com.vc"
+    - "*.ri.co"
+output_section: Rico Investimentos
