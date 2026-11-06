@@ -44,4 +44,46 @@ fetch:
     - "*.azureedge.net"
     - "*.azurefd.net"
     - "*.cloudapp.net"
+    # Microsoft push-notification + app-communicator hosts. These are NOT
+    # in the Microsoft 365 endpoints catalog. The Authenticator app receives
+    # the MFA challenge over Microsoft's push fabric and returns the signed
+    # approval through a separate app-communicator host — which is why
+    # blocking them yields "approve succeeds but the app never gets the
+    # data back" rather than a missing challenge.
+    #   mobileappcommunicator.auth.microsoft.com — app communicator (the
+    #     approval/response return path). CNAMEs to prda.aadg.msidentity.com
+    #     and www.tm.a.prd.aadg.akadns.net, both covered below.
+    - "mobileappcommunicator.auth.microsoft.com"
+    - "*.akadns.net"
+    #   Azure Notification Hubs / Service Bus — push delivery fabric.
+    - "*.servicebus.windows.net"
+    #   WNS (Windows Notification Service) — push channel registration.
+    - "*.notify.windows.com"
+    # Google Firebase Cloud Messaging (FCM) — the upstream channel the
+    # Authenticator Android app uses to RETURN the approval to Microsoft.
+    # Hostnames are Google's officially published FCM allowlist
+    # (firebase.google.com/docs/cloud-messaging/network-configuration).
+    # Without mtalk.* the push arrives but the response cannot be sent back.
+    - "mtalk.google.com"
+    - "mtalk4.google.com"
+    - "mtalk-staging.google.com"
+    - "mtalk-dev.google.com"
+    - "alt1-mtalk.google.com"
+    - "alt2-mtalk.google.com"
+    - "alt3-mtalk.google.com"
+    - "alt4-mtalk.google.com"
+    - "alt5-mtalk.google.com"
+    - "alt6-mtalk.google.com"
+    - "alt7-mtalk.google.com"
+    - "alt8-mtalk.google.com"
+    - "fcm.googleapis.com"
+    - "firebaseinstallations.googleapis.com"
+    - "android.apis.google.com"
+    - "device-provisioning.googleapis.com"
+    # Legacy GCM/XMPP upstream hosts — deprecated by Google, but the
+    # Authenticator app may still target them on older Android builds.
+    - "gcm.googleapis.com"
+    - "gcm-http.googleapis.com"
+    - "gcm-xmpp.googleapis.com"
+    - "fcm-xmpp.googleapis.com"
 output_section: Microsoft Authenticator
