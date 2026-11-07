@@ -112,5 +112,13 @@ whitelist.txt             # GENERATED. Do not edit.
   VPN/portal headend (e.g. `vpn.example.com`, GlobalProtect portal) is
   always required but cannot be enumerated by a generic allowlist. Add
   those entries to your local AdGuard config.
+- **Some apps need a third-party channel that isn't their vendor's
+  domain.** Microsoft Authenticator, for example, receives its MFA push
+  challenge over Microsoft's own hosts but returns the approval through
+  **Google FCM** — so Google's published FCM allowlist
+  (`firebase.google.com/docs/cloud-messaging/network-configuration`) is
+  included in the Authenticator section. If an app receives a
+  notification but never gets a response back, suspect the response
+  channel rather than the sign-in one.
 - The build is gated on `pip install` succeeding. On Debian hosts, system
   Python is PEP 668-locked — use a venv (`python3 -m venv .venv && .venv/bin/pip install -r requirements.txt`).

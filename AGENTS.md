@@ -77,6 +77,37 @@ docs/superpowers/         # design spec + implementation plan
 - **Microsoft 365 catalog API requires `?ClientRequestId=<UUID>`.** Both
   sources YAMLs include a fixed client ID; change it freely, but the
   parameter must be a valid GUID or the response is `400 Bad Request`.
+- **Never DNS-resolve a wildcard candidate.** Many vendor domains are
+  CNAME-only at the apex (no A record) while their subdomains are real
+  services. The AdGuard `@@||apex^` rule covers all subdomains anyway,
+  so `_gather_section` skips the resolve check for wildcard entries.
+  Dropping them broke Bing Maps (Authenticator location map hung) and
+  the whole Microsoft auth/push surface (Authenticator approval never
+  returned). Prefer a wildcard over enumerating subdomains.
+- **A blocked third-party channel can break an app that "looks" fine.**
+  The Authenticator app received its push challenge but could not return
+  the approval, because the *upstream* channel is Google FCM
+  (`mtalk.google.com`, `fcm.googleapis.com`, `firebaseinstallations.
+  googleapis.com`, `android.apis.google.com`, `device-provisioning.
+  googleapis.com`) — Google publishes an official FCM allowlist at
+  firebase.google.com/docs/cloud-messaging/network-configuration.
+  When an app receives a push but never gets a response back, suspect
+  the response channel, not the sign-in one.
+- **`dig` is not installed on this host.** Use the project's own
+  resolver: `from scripts.lib.resolve import resolve_domain`. Empty
+  `dig` output here means a missing binary, not missing DNS.
+- **The weekly refresh regenerates `whitelist.txt` and merges via PR,
+  so `main` moves under you.** If a push is rejected, `git pull --rebase
+  origin main`; if `whitelist.txt` conflicts, delete it and re-run
+  `python scripts/build.py --out whitelist.txt` — the YAMLs are the
+  source of truth, never hand-merge a generated file.
+- **The refresh workflow needs a repo setting, not just YAML
+  permissions.** `can_approve_pull_request_reviews: false` at the repo
+  level overrides the workflow's `pull-requests: write` and the PR step
+  fails with `403 ... not permitted to create or approve pull requests`.
+  Fix: `gh api -X PUT repos/OWNER/REPO/actions/permissions/workflow
+  -F default_workflow_permissions=write
+  -F can_approve_pull_request_reviews=true`.
   
   ## Cleanup
   - clean up local temporary changes after pushing to git. 
